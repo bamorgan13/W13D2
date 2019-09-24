@@ -12,6 +12,9 @@ class Store {
 
     subscribe(callback) {
         this.subscriptions.push(callback)
+        return () => {
+            this.subscriptions = this.subscriptions.filter( s => s !== callback)
+        }
     }
 
     dispatch(action) {
